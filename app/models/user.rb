@@ -4,10 +4,30 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   
+  # Includes
+
+  # Attributes
+
+  # Associations
   has_many :user_stocks
   has_many :stocks, through: :user_stocks
   has_many :friendships
   has_many :friends, through: :friendships
+
+  # Delegates
+
+  # Constants
+
+  # Validations
+  
+  # Scopes
+
+  # Callbacks
+
+  # Constants Methods
+
+  # Default
+
   
   def full_name
     return "#{first_name} #{last_name}".strip if (first_name || last_name)
@@ -19,4 +39,5 @@ class User < ApplicationRecord
     return false unless stock
     user_stocks.where(stock_id: stock.id).exists?
   end
+  private
 end
